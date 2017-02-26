@@ -1,0 +1,23 @@
+{% extends 'polls/main.html' %}
+{% block title %}{{ order }}{% endblock %}
+{% block orders_active %}active{% endblock %}
+
+{% block body %}
+<div class="container-fluid songs-container">
+
+    <div class="row">
+
+        <div class="col-sm-4 col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <a href="{% url 'polls:detail' order.id %}">
+                            <h3>Here can be a text</h3>
+                    </a>
+                    <h1>{{ order.user }} <small>{{ order.booking_time }}</small></h1>
+                    <h2>{{ order.status }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+li a {
+    color: #fc1118;
+}
+
+body {
+    padding-left: 15px;
+    font-family: Open Sans, sans-serif;
+}
+
+h1{
+    font: 300 30px / 26px Open Sans;
+    text-align: center;
+    text-decoration-color: aliceblue;
+    text-emphasis-color: #231f1f;
+}
