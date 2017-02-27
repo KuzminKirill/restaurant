@@ -78,8 +78,8 @@ class Order(models.Model):
     drink = models.ForeignKey(Drink, related_name='+', default=1)
     count = models.IntegerField(default=1)
 
-    def __str__(self):
-        return self.user + ' - ' + self.count #self.salad + self.soup + self.main_food + self.decert + self.drink
+   # def __str__(self):
+   #     return self.user # + ' - ' + self.count #self.salad + self.soup + self.main_food + self.decert + self.drink
 
 
 class Places(models.Model):
