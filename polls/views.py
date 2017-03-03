@@ -86,6 +86,13 @@ def create_order(request):
         return render(request, 'polls/create_order.html', context)
 
 
+def delete_order(request, order_id):
+    order = Order.objects.get(pk=order_id)
+    order.delete()
+    orders = Order.objects.filter(user=request.user)
+    return render(request, 'polls/index.html', {'orders': orders})
+
+
 def detail(request, order_id):
     if not request.user.is_authenticated():
         return render(request, 'polls/login.html')
