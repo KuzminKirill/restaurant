@@ -1,0 +1,22 @@
+{% extends 'polls/main.html' %}
+{% block title %}Register{% endblock %}
+{% block register_active %}active{% endblock %}
+
+{% block body %}
+    <div class="row">
+        <div class="container">
+            <h2> Супы </h2>
+                {% for soup in soup %}
+                    <h3>{{ soup.title }}</h3>
+                    <h4>{{ soup.description }}</h4>
+                {% endfor %}
+        </div>
+        <div class="container">
+            <h2> Салаты</h2>
+                {% for salad in salad %}
+                    <h3>{{ salad.title }}</h3>
+                    <h4>{{ salad.description }}</h4>
+                {% endfor %}
+        </div>
+    </div>
+{% endblock %}

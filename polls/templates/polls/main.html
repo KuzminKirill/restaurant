@@ -28,6 +28,8 @@
             <ul class="nav navbar-nav">
                 <li class="{% block register_active %}{% endblock %}"><a href="{% url 'polls:register' %}">Register</a></li>
                 <li class="{% block login_active %}{% endblock %}"><a href="{% url 'polls:login_user' %}">Log In</a></li>
+                <li class="{% block menu %}{% endblock %}"><a href="{% url 'polls:show_menu' %}">Food Menu</a></li>
+                <li class="{% block about %}{% endblock %}"><a href="{% url 'polls:about' %}">About us</a></li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li>

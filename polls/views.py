@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .forms import UserForm, OrderForm
 
-from .models import Order
+from .models import Order, Salad, Soup, MainFood, Decert, Drink
 
 
 
@@ -101,3 +101,31 @@ def detail(request, order_id):
         order = get_object_or_404(Order, pk=order_id)
         return render(request, 'polls/detail.html', {'order': order, 'user': user})
 
+
+#def salad(request):
+#    if not request.user.is_authenticated():
+#        return render(request, 'polls/login.html')
+#    else:
+#
+#        return render('salad.html', {"salads": salad})
+#
+#
+#def soup(request):
+#    if not request.user.is_authenticated():
+#        return render(request, 'polls/login.html')
+#    else:
+#        soup_list = Soup.objects.all()
+#        return render('soup.html', {"soup": soup})
+#
+
+def show_menu(request):
+    salad = Salad.objects.all()
+    mainfood = MainFood.objects.all()
+    decert = Decert.objects.all()
+    drink = Drink.objects.all()
+    soup = Soup.objects.all()
+    return render(request, 'polls/menu.html', {'salad': salad, 'soup': soup, 'mainfood': mainfood, 'decert': decert, 'drink': drink})
+
+
+def about(request):
+    return render(request, 'polls/about.html')
