@@ -10,11 +10,12 @@
         <div class="col-sm-4 col-md-3">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <a href="{% url 'polls:detail' order.id %}">
-                            <h3>Here can be a text</h3>
+                    <a href="{% url 'polls:index' %}">
+                            <h3>Вернуться к заказам</h3>
                     </a>
-                    <h1>{{ order.user }} <small>{{ order.booking_time }}</small></h1>
-                    <h2>{{ order.status }}</h2>
+                    <h1>Уважаемый, {{ order.user }} </br> <small> Ваш заказ на дату:{{ order.booking_time }}</small></h1>
+                    <h2>Предварительный счет: {{ order.bill }}</h2>
+                    <h5>Статус заказа: {{ order.status }}</h5>
                 </div>
             </div>
         </div>

@@ -63,23 +63,27 @@ class Drink(models.Model):
 #    drink = models.OneToOneField(Drink, related_name='+')
 #    count = models.IntegerField(default=1)
 
+class Discount(models.Model):
+    code = models.CharField(max_length=7)
+    coefficient = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.code
+
 
 class Order(models.Model):
     user = models.ForeignKey(User, default=1)
-    #good = models.ForeignKey(Goods, default=1)
     booking_time = models.DateTimeField()
     created_at = models.TimeField(auto_now=True)
     status = models.IntegerField(default=1)
-    #spisok = models.ForeignKey(Spisok, default=1)
     salad = models.ForeignKey(Salad, related_name='+', default=1)
     soup = models.ForeignKey(Soup, related_name='+', default=1)
     main_food = models.ForeignKey(MainFood, related_name='+', default=1)
     decert = models.ForeignKey(Decert, related_name='+', default=1)
     drink = models.ForeignKey(Drink, related_name='+', default=1)
     count = models.IntegerField(default=1)
-
-   # def __str__(self):
-   #     return self.user # + ' - ' + self.count #self.salad + self.soup + self.main_food + self.decert + self.drink
+    discount = models.ForeignKey(Discount, default=0)
+    bill = models.IntegerField(default=0)
 
 
 class Places(models.Model):
@@ -90,3 +94,4 @@ class Places(models.Model):
 class OrderPlaces(models.Model):
     orders_id = models.ForeignKey(Order)
     place_id = models.ForeignKey(Places)
+

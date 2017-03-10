@@ -16,4 +16,4 @@ class OrderForm(forms.ModelForm):
 
     class Meta:
         model = Order
-        fields = ['booking_time', 'salad', 'soup', 'main_food', 'decert', 'drink']
+        fields = ['booking_time', 'salad', 'soup', 'main_food', 'decert', 'drink', 'discount']

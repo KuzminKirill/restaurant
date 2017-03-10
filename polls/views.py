@@ -4,20 +4,16 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .forms import UserForm, OrderForm
 
-from .models import Order, Salad, Soup, MainFood, Decert, Drink
-
+from .models import Order, Salad, Soup, MainFood, Decert, Drink, Discount
 
 
 # Create your views here.
-
 def index(request):
     if not request.user.is_authenticated():
         return render(request, 'polls/login.html')
     else:
         orders = Order.objects.filter(user=request.user)
         return render(request, 'polls/index.html', {'orders': orders})
-#def index(request):
-#    return render(request, 'polls/index.html')
 
 
 def logout_user(request):
@@ -79,6 +75,7 @@ def create_order(request):
             order = form.save(commit=False)
             order.user = request.user
             order.status = 0
+            order.bill = (order.salad.price + order.soup.price + order.main_food.price + order.drink.price + order.decert.price) * order.discount.coefficient
             order.save()
         context = {
             "form": form,
