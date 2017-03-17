@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, get_object_or_404
 from .forms import UserForm, OrderForm
 
-from .models import Order, Salad, Soup, MainFood, Decert, Drink, Discount
+from .models import Order, Salad, Soup, MainFood, Decert, Drink, UserDiscount
 
 
 # Create your views here.
@@ -65,6 +65,23 @@ def register(request):
 #    return render_to_response('orders.html', {'orders': Order.objects.all(), 'username:' auth.get_user()})
 
 
+#@login_required
+#def create_order(request):
+#    if not request.user.is_authenticated():
+#        return render(request, 'polls/login.html')
+#    else:
+#        form = OrderForm(request.POST or None)
+#        if form.is_valid():
+#            order = form.save(commit=False)
+#            order.user = request.user
+#            order.status = 0
+#            order.bill = (order.salad.price + order.soup.price + order.main_food.price + order.drink.price + order.decert.price) * order.discount.coefficient
+#            order.save()
+#        context = {
+#            "form": form,
+#        }
+#        return render(request, 'polls/create_order.html', context)
+
 @login_required
 def create_order(request):
     if not request.user.is_authenticated():
@@ -75,7 +92,7 @@ def create_order(request):
             order = form.save(commit=False)
             order.user = request.user
             order.status = 0
-            order.bill = (order.salad.price + order.soup.price + order.main_food.price + order.drink.price + order.decert.price) * order.discount.coefficient
+            order.bill = (order.salad.price + order.soup.price + order.main_food.price + order.drink.price + order.decert.price) * order.discount.coefficient * order.count
             order.save()
         context = {
             "form": form,
