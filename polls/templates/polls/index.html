@@ -8,20 +8,19 @@
     <!-- Orders -->
     <div class="row">
         <div class="col-sm-12">
-            <h3>{{ user.username }}'s Orders</h3>
+            <h3>Ваши заказы, {{ user.username }}</h3>
         </div>
-        {% if orders %}
             {% for order in orders %}
                 <div class="col-sm-4 col-lg-2">
                     <div class="thumbnail">
                         <a href="{% url 'polls:detail' order.id %}">
                         </a>
                         <div class="caption">
-                            <h2>{{ order.user }}</h2>
-                            <h4>{{ order.status }}</h4>
+                            <h2>{{ order.booking_time }}</h2>
+                            <h4> Предварительный счет: {{ order.bill }}</h4>
 
                             <!-- View Details -->
-                            <a href="{% url 'polls:detail' order.id %}" class="btn btn-primary btn-sm" role="button">View Details</a>
+                            <a href="{% url 'polls:detail' order.id %}" class="btn btn-primary btn-sm" role="button">Детали</a>
 
                             <!-- Delete Order -->
                             <form action="{% url 'polls:delete_order' order.id %}" method="post" style="display: inline;">
@@ -35,15 +34,13 @@
                     </div>
                 </div>
             {% endfor %}
-        {% else %}
             <div class="col-sm-12">
                 <br>
                 <a href="{% url 'polls:create_order' %}">
                     <button type="button" class="btn btn-success">
-                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Add an Order
+                        <span class="glyphicon glyphicon-plus"></span>&nbsp; Добавить заказ
                     </button>
                 </a>
             </div>
-        {% endif %}
     </div>
 {% endblock %}
